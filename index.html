@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Résumé Brainstorming Workbook | HelloCollege</title>
+<meta name="description" content="A free workbook for high school students to brainstorm everything they've done, build a résumé draft, and plan what to add next.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Young+Serif&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --purple: #4A2C7A;
+    --purple-deep: #341D59;
+    --purple-soft: #F1ECF8;
+    --lavender: #C9B8E6;
+    --gray: #5E6472;
+    --gray-line: #D5D7DD;
+    --gray-bg: #E9EAEE;
+    --paper: #FFFFFF;
+    --ink: #221F29;
+    --serif: "Young Serif", Georgia, "Times New Roman", serif;
+    --sans: "Atkinson Hyperlegible", "Segoe UI", system-ui, -apple-system, sans-serif;
+    --resume-serif: Georgia, "Times New Roman", Times, serif;
+    color-scheme: light;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body { margin: 0; background: var(--gray-bg); color: var(--ink); font-family: var(--sans); font-size: 1.0625rem; line-height: 1.55; }
+  a { color: var(--purple); }
+  :focus-visible { outline: 3px solid var(--purple); outline-offset: 2px; }
+  .wrap { max-width: 1100px; margin: 0 auto; padding: 0 1.25rem; }
+
+  header.masthead { padding: 2.75rem 0 1.5rem; }
+  .brand { font-weight: 700; color: var(--purple); font-size: 0.95rem; margin: 0 0 0.75rem; }
+  h1 { font-family: var(--serif); font-weight: 400; font-size: clamp(2.25rem, 6vw, 3.6rem); line-height: 1.05; margin: 0 0 0.75rem; color: var(--purple-deep); max-width: 15ch; }
+  .lede { max-width: 58ch; color: var(--gray); margin: 0; font-size: 1.125rem; }
+
+  .toolbar { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; margin-top: 1.5rem; }
+  .btn { font: inherit; font-size: 0.95rem; font-weight: 700; border: 2px solid var(--purple); background: var(--paper); color: var(--purple); padding: 0.45rem 0.9rem; border-radius: 6px; cursor: pointer; }
+  .btn:hover { background: var(--purple-soft); }
+  .btn.solid { background: var(--purple); color: #fff; }
+  .btn.solid:hover { background: var(--purple-deep); }
+  .btn.quiet { border-color: var(--gray-line); color: var(--gray); }
+  .btn.small { font-size: 0.88rem; padding: 0.3rem 0.7rem; }
+  .btn.danger { border-color: transparent; color: #8A2B2B; background: transparent; text-decoration: underline; }
+  .save-status { font-size: 0.9rem; color: var(--gray); margin-left: auto; }
+  .save-status.warn { color: #8A2B2B; font-weight: 700; }
+
+  .tabs { display: flex; gap: 0.35rem; margin-top: 2rem; padding-left: 0.5rem; overflow-x: auto; }
+  .tab { font: inherit; cursor: pointer; border: 0; background: var(--lavender); color: var(--purple-deep); padding: 0.7rem 1.2rem 0.6rem; border-radius: 12px 12px 0 0; text-align: left; white-space: nowrap; min-width: 8.5rem; position: relative; top: 4px; }
+  .tab .num { display: block; font-size: 0.8rem; opacity: 0.8; }
+  .tab .name { font-family: var(--serif); font-size: 1.15rem; }
+  .tab[aria-selected="true"] { background: var(--paper); top: 0; padding-bottom: 0.85rem; border-top: 4px solid var(--purple); }
+
+  .sheet { background: var(--paper); border-radius: 0 10px 10px 10px; padding: 2.5rem clamp(1.25rem, 4vw, 3rem) 3rem; margin-bottom: 3rem; }
+  .panel[hidden] { display: none; }
+
+  h2 { font-family: var(--serif); font-weight: 400; font-size: 2rem; line-height: 1.15; margin: 0 0 0.5rem; color: var(--purple-deep); }
+  h3 { font-family: var(--serif); font-weight: 400; font-size: 1.35rem; margin: 2.25rem 0 0.5rem; color: var(--purple-deep); }
+  .intro { max-width: 62ch; color: var(--gray); margin: 0 0 1.5rem; }
+
+  .grades { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); border-top: 2px solid var(--purple); margin-top: 1.5rem; }
+  .grade { padding: 1.1rem 1.25rem 1.25rem 0; }
+  .grade + .grade { padding-left: 1.25rem; border-left: 1px solid var(--gray-line); }
+  .grade h4 { font-family: var(--serif); font-weight: 400; font-size: 1.25rem; margin: 0 0 0.4rem; color: var(--purple); }
+  .grade p { margin: 0 0 0.5rem; font-size: 0.98rem; }
+  .grade .guide { font-size: 0.9rem; color: var(--gray); }
+  .how { max-width: 62ch; }
+  .how li { margin-bottom: 0.4rem; }
+  .note { background: var(--purple-soft); padding: 1rem 1.25rem; border-radius: 8px; max-width: 62ch; font-size: 0.98rem; margin-top: 1.5rem; }
+
+  label, .label { display: block; font-weight: 700; margin-bottom: 0.3rem; }
+  .hint { display: block; font-weight: 400; font-size: 0.88rem; color: var(--gray); margin-top: 0.15rem; }
+  input[type="text"], input[type="email"], input[type="tel"], textarea, select { width: 100%; font: inherit; color: var(--ink); border: 1.5px solid var(--gray-line); border-radius: 6px; padding: 0.5rem 0.65rem; background: #fff; }
+  textarea { min-height: 5rem; resize: vertical; }
+  input:focus, textarea:focus, select:focus { border-color: var(--purple); outline: none; box-shadow: 0 0 0 3px var(--purple-soft); }
+  .field { margin-bottom: 1.1rem; }
+  .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 0 1.5rem; }
+  .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 0 1.25rem; }
+  .checks { display: flex; flex-wrap: wrap; gap: 0.4rem 1.1rem; }
+  .checks label { font-weight: 400; display: inline-flex; gap: 0.35rem; align-items: center; margin: 0; }
+  .checks input, .inline-check input { width: 1.1rem; height: 1.1rem; accent-color: var(--purple); }
+  .inline-check { display: inline-flex; gap: 0.45rem; align-items: center; font-weight: 700; margin: 0; cursor: pointer; }
+  .counter { font-size: 0.85rem; color: var(--gray); text-align: right; margin-top: 0.2rem; }
+  .counter.full { color: #8A2B2B; font-weight: 700; }
+
+  /* Verb bank */
+  .verbs { border: 1.5px solid var(--lavender); border-radius: 8px; padding: 0.75rem 1.1rem; margin: 0 0 1.5rem; max-width: 62rem; }
+  .verbs summary { cursor: pointer; font-weight: 700; color: var(--purple); }
+  .verbs dl { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0.5rem 1.5rem; margin: 0.9rem 0 0.25rem; }
+  .verbs dt { font-weight: 700; }
+  .verbs dd { margin: 0; color: var(--gray); font-size: 0.95rem; }
+  .verbs .tip { margin: 0.9rem 0 0.25rem; font-size: 0.95rem; }
+
+  /* Categories in Part 1 */
+  .cat { border-top: 2px solid var(--purple); padding-top: 0.25rem; margin-top: 2.25rem; }
+  .cat h3 { margin-top: 0.75rem; }
+  .cat .prompts { color: var(--gray); max-width: 66ch; margin: 0 0 1rem; font-size: 0.98rem; }
+  .entry { border: 1.5px solid var(--gray-line); border-left: 6px solid var(--purple); border-radius: 8px; margin: 1rem 0; background: #fff; }
+  .entry > summary { list-style: none; cursor: pointer; padding: 0.85rem 1.1rem; display: flex; align-items: baseline; gap: 0.6rem; flex-wrap: wrap; }
+  .entry > summary::-webkit-details-marker { display: none; }
+  .entry .ename { font-family: var(--serif); font-size: 1.2rem; color: var(--purple-deep); }
+  .entry .eorg { color: var(--gray); }
+  .entry .toggle { margin-left: auto; font-size: 0.9rem; color: var(--gray); }
+  .entry[open] > summary .toggle::after { content: "Collapse"; }
+  .entry:not([open]) > summary .toggle::after { content: "Expand"; }
+  .entry-body { padding: 0 1.1rem 1.1rem; }
+  .entry-actions { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.5rem; }
+
+  /* Part 2 layout */
+  .draft { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr); gap: 2rem; align-items: start; margin-top: 1rem; }
+  .order-section { border-bottom: 1px solid var(--gray-line); padding: 0.65rem 0; }
+  .order-section .row { display: flex; align-items: center; gap: 0.5rem; }
+  .order-section .stitle { font-weight: 700; }
+  .order-list { list-style: none; margin: 0.4rem 0 0; padding: 0 0 0 1.6rem; }
+  .order-list li { display: flex; align-items: center; gap: 0.45rem; padding: 0.25rem 0; font-size: 0.95rem; }
+  .order-list li .lbl { flex: 1; min-width: 0; }
+  .order-list li.excluded .lbl { color: #9A9EA8; text-decoration: line-through; }
+  .arrow { font: inherit; font-size: 0.85rem; border: 1.5px solid var(--gray-line); background: #fff; border-radius: 5px; width: 1.9rem; height: 1.9rem; cursor: pointer; color: var(--purple); }
+  .arrow:disabled { opacity: 0.35; cursor: default; }
+  .preview-tools { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.75rem; align-items: center; }
+  .preview-wrap { position: sticky; top: 1rem; }
+
+  /* The résumé itself: plain and neutral, not branded */
+  .resume { border: 1px solid var(--gray-line); box-shadow: 0 1px 3px rgba(34, 31, 41, 0.08); padding: 2.25rem 2.25rem 2.5rem; color: #111; background: #fff; font-family: var(--resume-serif); font-size: 0.93rem; line-height: 1.4; }
+  .resume .rname { font-size: 1.75rem; text-align: center; margin: 0 0 0.2rem; font-weight: 700; }
+  .resume .rcontact { text-align: center; margin: 0 0 1rem; font-size: 0.88rem; }
+  .resume h4 { font-size: 0.98rem; font-weight: 700; margin: 1rem 0 0.4rem; padding-bottom: 0.15rem; border-bottom: 1px solid #111; letter-spacing: 0.02em; }
+  .resume .ritem { margin: 0 0 0.55rem; }
+  .resume .rhead { display: flex; justify-content: space-between; gap: 1rem; }
+  .resume .rhead .when { white-space: nowrap; font-style: italic; }
+  .resume .rsub { font-size: 0.86rem; color: #444; }
+  .resume ul { margin: 0.15rem 0 0; padding-left: 1.2rem; }
+  .resume li { margin: 0.05rem 0; }
+  .resume p { margin: 0.1rem 0; }
+  .resume .placeholder { color: #9A9EA8; font-style: italic; }
+
+  /* Part 3 */
+  .tally { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 0.5rem; margin: 0.5rem 0 1rem; }
+  .tally div { border: 1.5px solid var(--gray-line); border-radius: 8px; padding: 0.55rem 0.8rem; }
+  .tally .n { font-family: var(--serif); font-size: 1.35rem; color: var(--purple-deep); display: block; line-height: 1.1; }
+  .tally .zero { border-style: dashed; border-color: var(--lavender); }
+  .tally .zero .n { color: #9A9EA8; }
+  .guides { border-left: 4px solid var(--purple); padding: 0.5rem 0 0.5rem 1rem; margin: 0.5rem 0 1rem; }
+  .guides p { margin: 0 0 0.35rem; }
+  .guides ul { margin: 0; padding-left: 1.2rem; }
+  .goal { border-top: 1px solid var(--gray-line); padding-top: 1rem; margin-top: 0.5rem; }
+  .goal h4 { font-family: var(--serif); font-weight: 400; font-size: 1.1rem; color: var(--purple); margin: 0 0 0.6rem; }
+  .empty { border: 2px dashed var(--lavender); border-radius: 10px; padding: 1.25rem; color: var(--gray); }
+
+  footer { text-align: center; color: var(--gray); font-size: 0.88rem; padding: 0 1rem 2.5rem; }
+  .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+  @media (max-width: 860px) {
+    .draft { grid-template-columns: 1fr; }
+    .preview-wrap { position: static; }
+  }
+  @media (max-width: 640px) {
+    .tab { min-width: 7rem; padding: 0.6rem 0.9rem 0.5rem; }
+    .grade + .grade { padding-left: 0; border-left: 0; border-top: 1px solid var(--gray-line); }
+    .save-status { margin-left: 0; width: 100%; }
+    .resume { padding: 1.25rem; }
+    .resume .rhead { flex-direction: column; gap: 0; }
+  }
+
+  /* Print */
+  @media print {
+    @page { margin: 0.6in; }
+    body { background: #fff; font-size: 11pt; }
+    .toolbar, .tabs, .no-print { display: none !important; }
+    header.masthead { padding: 0 0 0.5rem; }
+    .sheet { padding: 0; border-radius: 0; margin: 0; }
+    .panel, .panel[hidden] { display: block !important; }
+    .panel + .panel { break-before: page; }
+    .entry { break-inside: avoid-page; border-left-width: 4px; }
+    .entry .toggle { display: none; }
+    input[type="text"], input[type="email"], input[type="tel"], textarea, select { border: 0; border-bottom: 1px solid #999; border-radius: 0; padding-left: 0; }
+    select { appearance: none; -webkit-appearance: none; }
+    textarea { resize: none; min-height: 4rem; }
+    .draft { display: block; }
+    .preview-wrap { position: static; break-before: page; }
+    .resume { border: 0; box-shadow: none; padding: 0; }
+    .note, .guides { background: none; }
+    a { color: inherit; text-decoration: none; }
+
+    /* Résumé-only print */
+    body.print-resume header.masthead,
+    body.print-resume footer,
+    body.print-resume .panel:not(#panel-draft),
+    body.print-resume #panel-draft > *:not(.draft),
+    body.print-resume .order-col,
+    body.print-resume .preview-tools { display: none !important; }
+    body.print-resume .preview-wrap { break-before: auto; }
+    body.print-resume .resume { font-size: 10.5pt; }
+
+    /* Blank workbook print: no résumé preview */
+    body.print-blank .preview-wrap, body.print-blank .order-col { display: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead wrap">
+  <p class="brand">HelloCollege</p>
+  <h1>Résumé Brainstorming Workbook</h1>
+  <p class="lede">You've probably done more than you think. List everything first, then turn it into a résumé draft and plan what you'd like to add next.</p>
+
+  <div class="toolbar" role="toolbar" aria-label="Workbook tools">
+    <button class="btn solid" type="button" id="btn-print">Print my workbook</button>
+    <button class="btn" type="button" id="btn-print-blank">Print a blank copy</button>
+    <button class="btn quiet" type="button" id="btn-export">Download backup</button>
+    <button class="btn quiet" type="button" id="btn-import">Restore backup</button>
+    <input type="file" id="import-file" accept="application/json,.json" class="sr-only" tabindex="-1" aria-hidden="true">
+    <button class="btn danger" type="button" id="btn-clear">Start over</button>
+    <span class="save-status" id="save-status" role="status" aria-live="polite"></span>
+  </div>
+
+  <nav class="tabs" role="tablist" aria-label="Workbook sections">
+    <button class="tab" role="tab" id="tab-start" aria-controls="panel-start" aria-selected="true"><span class="num">Start</span><span class="name">How to use this</span></button>
+    <button class="tab" role="tab" id="tab-brainstorm" aria-controls="panel-brainstorm" aria-selected="false" tabindex="-1"><span class="num">Part 1</span><span class="name">Brainstorm</span></button>
+    <button class="tab" role="tab" id="tab-draft" aria-controls="panel-draft" aria-selected="false" tabindex="-1"><span class="num">Part 2</span><span class="name">Draft my résumé</span></button>
+    <button class="tab" role="tab" id="tab-plan" aria-controls="panel-plan" aria-selected="false" tabindex="-1"><span class="num">Part 3</span><span class="name">Plan what's next</span></button>
+  </nav>
+</header>
+
+<main class="wrap">
+  <div class="sheet">
+
+    <!-- START -->
+    <section class="panel" id="panel-start" role="tabpanel" aria-labelledby="tab-start">
+      <h2>How to use this workbook</h2>
+      <p class="intro">Each part builds on the one before it. Everything you list in Part 1 flows into your résumé draft in Part 2, and Part 3 helps you see what you'd like to add.</p>
+      <ol class="how">
+        <li><strong>Brainstorm.</strong> Go category by category and write down everything you've done, even things that don't feel important.</li>
+        <li><strong>Draft my résumé.</strong> Choose what to include and put it in order. Your résumé builds itself as you go, ready to print or copy.</li>
+        <li><strong>Plan what's next.</strong> Look for gaps, set a goal or two, and find the guide that matches your interests.</li>
+      </ol>
+
+      <h3>Where to focus in your grade</h3>
+      <div class="grades">
+        <div class="grade"><h4>9th grade</h4><p>Your list will be short, and that's expected. Spend your time in Part 1 and Part 3, and think of this year as exploring.</p><p class="guide" data-guide="grade910"></p></div>
+        <div class="grade"><h4>10th grade</h4><p>Add what you tried last year and notice what you kept doing. Use Part 3 to go deeper in one or two areas you care about.</p><p class="guide" data-guide="grade910"></p></div>
+        <div class="grade"><h4>11th grade</h4><p>Build your full draft in Part 2. Focus on what you did and the difference it made, with numbers wherever you can.</p><p class="guide" data-guide="grade11"></p></div>
+        <div class="grade"><h4>12th grade</h4><p>Polish your draft for applications and interviews. Use the Common App fields in Part 1 to fill in your activities list.</p></div>
+      </div>
+
+      <div class="note no-print">
+        <strong>Your answers stay on this device.</strong> The workbook saves automatically in this browser, and nothing is sent anywhere. If you switch computers or clear your browser, your work won't come with you, so use <em>Download backup</em> now and then and <em>Restore backup</em> to pick up where you left off.
+      </div>
+    </section>
+
+    <!-- PART 1 -->
+    <section class="panel" id="panel-brainstorm" role="tabpanel" aria-labelledby="tab-brainstorm" hidden>
+      <h2>Part 1: Brainstorm</h2>
+      <p class="intro">Write down everything, then decide later what goes on your résumé. If you're not sure something counts, add it anyway. Babysitting your cousins every weekend counts. So does the YouTube channel nobody watches yet.</p>
+
+      <details class="verbs no-print">
+        <summary>Help with describing what you did</summary>
+        <dl>
+          <dt>Leading</dt><dd>Led, organized, coordinated, directed, founded, mentored</dd>
+          <dt>Creating</dt><dd>Designed, built, wrote, produced, launched, developed</dd>
+          <dt>Helping</dt><dd>Supported, tutored, served, assisted, cared for, volunteered</dd>
+          <dt>Improving</dt><dd>Increased, raised, grew, streamlined, expanded, improved</dd>
+          <dt>Communicating</dt><dd>Presented, taught, translated, promoted, recruited, edited</dd>
+          <dt>Figuring things out</dt><dd>Researched, analyzed, solved, tested, planned, managed</dd>
+        </dl>
+        <p class="tip">Start each line with a verb, then add a number if you can. "Helped with the bake sale" becomes "Organized a bake sale with 8 volunteers that raised $650 for the food pantry."</p>
+      </details>
+
+      <div id="brainstorm"></div>
+
+      <section class="cat">
+        <h3>Skills</h3>
+        <p class="prompts">Languages you speak or are learning, software and tools you know, and certifications like CPR, lifeguarding, or food handler.</p>
+        <div class="grid-2">
+          <div class="field"><label for="sk-lang">Languages</label><input type="text" id="sk-lang" data-bind="skills.languages" placeholder="e.g. Spanish (fluent), French (conversational)"></div>
+          <div class="field"><label for="sk-tech">Software and tools</label><input type="text" id="sk-tech" data-bind="skills.technical" placeholder="e.g. Google Sheets, Canva, Python"></div>
+          <div class="field"><label for="sk-cert">Certifications</label><input type="text" id="sk-cert" data-bind="skills.certifications" placeholder="e.g. CPR and First Aid (American Red Cross)"></div>
+          <div class="field"><label for="sk-other">Other skills</label><input type="text" id="sk-other" data-bind="skills.other"></div>
+        </div>
+      </section>
+    </section>
+
+    <!-- PART 2 -->
+    <section class="panel" id="panel-draft" role="tabpanel" aria-labelledby="tab-draft" hidden>
+      <h2>Part 2: Draft my résumé</h2>
+      <p class="intro">Add your details, then choose what to include and in what order. Your draft updates as you go. To change what an entry says, edit it in Part 1.</p>
+
+      <h3>My details</h3>
+      <div class="grid-3">
+        <div class="field"><label for="ct-name">Full name</label><input type="text" id="ct-name" data-bind="contact.name" autocomplete="name"></div>
+        <div class="field"><label for="ct-email">Email</label><input type="email" id="ct-email" data-bind="contact.email" autocomplete="email"><span class="hint">Use one that sounds professional.</span></div>
+        <div class="field"><label for="ct-phone">Phone</label><input type="tel" id="ct-phone" data-bind="contact.phone" autocomplete="tel"></div>
+        <div class="field"><label for="ct-city">City and state</label><input type="text" id="ct-city" data-bind="contact.city"></div>
+        <div class="field"><label for="ct-school">High school</label><input type="text" id="ct-school" data-bind="contact.school"></div>
+        <div class="field"><label for="ct-year">Graduation year</label><input type="text" id="ct-year" data-bind="contact.gradYear" inputmode="numeric" placeholder="e.g. 2028"></div>
+        <div class="field"><label for="ct-gpa">GPA (optional)</label><input type="text" id="ct-gpa" data-bind="contact.gpa" placeholder="e.g. 3.8 unweighted"></div>
+      </div>
+      <div class="field"><label for="ct-courses">Relevant or advanced courses (optional)</label><input type="text" id="ct-courses" data-bind="contact.courses" placeholder="e.g. AP Biology, Honors Chemistry"></div>
+
+      <div class="draft">
+        <div class="order-col no-print">
+          <h3 style="margin-top:0.5rem">What to include</h3>
+          <p class="hint" style="margin:0 0 0.5rem">Uncheck a section or entry to leave it off. Use the arrows to put your strongest entries first.</p>
+          <div id="order"></div>
+        </div>
+        <div class="preview-wrap">
+          <div class="preview-tools no-print">
+            <button class="btn solid small" type="button" id="btn-print-resume">Print my résumé</button>
+            <button class="btn small" type="button" id="btn-copy">Copy as text</button>
+            <span class="hint" id="copy-status" role="status" aria-live="polite"></span>
+          </div>
+          <div class="resume" id="resume" aria-label="Résumé preview"></div>
+          <p class="hint no-print" style="margin-top:0.6rem">To save a PDF, click Print my résumé and choose Save as PDF. Copy as text pastes cleanly into Google Docs or Word if you'd like to finish it there.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PART 3 -->
+    <section class="panel" id="panel-plan" role="tabpanel" aria-labelledby="tab-plan" hidden>
+      <h2>Part 3: Plan what's next</h2>
+      <p class="intro">A strong résumé isn't about filling every category. It's about going deeper in the things you care about. Use this page to decide where to put your energy.</p>
+
+      <h3>Look at your list</h3>
+      <div class="tally" id="tally"></div>
+      <p class="hint" style="margin-top:0">Empty categories are normal. Focus on the ones that matter to you.</p>
+      <div class="field">
+        <label for="pl-notice">What do you notice?<span class="hint">Where have you spent the most time? Is something you care about missing from your list?</span></label>
+        <textarea id="pl-notice" data-bind="plan.notice"></textarea>
+      </div>
+
+      <h3>Find your guide</h3>
+      <div class="grid-2">
+        <div class="field"><label for="pl-grade">My grade</label>
+          <select id="pl-grade" data-bind="plan.grade"><option value="">Choose one</option><option>9th</option><option>10th</option><option>11th</option><option>12th</option></select></div>
+        <div class="field"><label for="pl-interest">The area I'm most interested in</label>
+          <select id="pl-interest" data-bind="plan.interest">
+            <option value="">Choose one</option>
+            <option value="stem">STEM and technology</option>
+            <option value="business">Business and finance</option>
+            <option value="arts">Arts and humanities</option>
+            <option value="health">Healthcare and sciences</option>
+            <option value="sports">Sports and fitness</option>
+            <option value="social">Social impact and service</option>
+            <option value="unsure">Not sure yet</option>
+          </select></div>
+      </div>
+      <div id="guides"></div>
+
+      <h3>My goals</h3>
+      <p class="intro">Pick one to three things you'd like to do in the next year. Keep them small enough to actually start.</p>
+      <div id="goals"></div>
+
+      <div class="field" style="margin-top:1.25rem">
+        <label for="pl-help">Who can help me?<span class="hint">A counselor, teacher, coach, boss, or family member who could point you to opportunities or write about you later.</span></label>
+        <textarea id="pl-help" data-bind="plan.help"></textarea>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<footer>
+  <p>Created by HelloCollege counselors. Helping families through the college process since 2012.</p>
+</footer>
+
+<script>
+(function () {
+  "use strict";
+
+  /* =========================================================
+     COUNSELORS: add links to your résumé guides here.
+     Leave url as "" and the page shows a [link to ...] placeholder.
+     ========================================================= */
+  var GUIDES = {
+    grade910:      { name: "9th and 10th Grade Résumé Guide", url: "" },
+    grade11:       { name: "11th Grade Résumé Guide", url: "" },
+    stem:          { name: "STEM and Tech Résumé Guide", url: "" },
+    business:      { name: "Business and Finance Résumé Guide", url: "" },
+    arts:          { name: "Arts and Humanities Résumé Guide", url: "" },
+    health:        { name: "Healthcare and Sciences Résumé Guide", url: "" },
+    sports:        { name: "Sports and Fitness Résumé Guide", url: "" },
+    social:        { name: "Social Impact and Service Résumé Guide", url: "" },
+    boosterStem:   { name: "STEM, Engineering, and Computer Science Résumé Booster Guide", url: "" },
+    boosterPremed: { name: "Pre-Med and Public Health Résumé Booster Guide", url: "" },
+    boosterAthlete:{ name: "Student-Athlete Résumé Booster Guide", url: "" }
+  };
+  var INTEREST_GUIDES = {
+    stem: ["stem", "boosterStem"], business: ["business"], arts: ["arts"],
+    health: ["health", "boosterPremed"], sports: ["sports", "boosterAthlete"], social: ["social"], unsure: []
+  };
+
+  var STORAGE_KEY = "hc-resume-workbook-v1";
+
+  var CATEGORIES = [
+    { id: "club",    label: "School clubs and leadership", add: "Add a club or role", section: "activities",
+      prompts: "Clubs, student government, honor societies, class officer roles, peer tutoring, school newspaper or yearbook, debate, Model UN." },
+    { id: "sport",   label: "Sports", add: "Add a sport", section: "athletics",
+      prompts: "School teams, club or travel teams, captain roles, intramurals, coaching or refereeing younger kids, training on your own toward a goal." },
+    { id: "arts",    label: "Arts", add: "Add an arts activity", section: "arts",
+      prompts: "Band, orchestra, choir, theater on stage or on crew, dance, visual art, film, creative writing, design, performances or a portfolio." },
+    { id: "job",     label: "Paid jobs", add: "Add a job", section: "work",
+      prompts: "Part-time jobs, babysitting, lawn care, tutoring, lifeguarding, camp counselor, selling things you make, freelance work." },
+    { id: "family",  label: "Family responsibilities", add: "Add a responsibility", section: "work",
+      prompts: "Caring for siblings or relatives, translating for family, helping in a family business, regular responsibilities at home that take real time." },
+    { id: "service", label: "Volunteering", add: "Add a volunteer role", section: "service",
+      prompts: "Community or faith groups, food banks, hospitals, animal shelters, tutoring, fundraisers, organizing a drive." },
+    { id: "summer",  label: "Summer programs and classes", add: "Add a program", section: "summer",
+      prompts: "Pre-college programs, camps, dual enrollment or online courses, research, internships, job shadowing." },
+    { id: "project", label: "Personal projects", add: "Add a project", section: "projects",
+      prompts: "Something you built, coded, wrote, started, or taught yourself. A blog, video channel, app, small business, garden, or a car you fixed up." },
+    { id: "award",   label: "Awards and honors", add: "Add an award", section: "awards",
+      prompts: "Honor roll, AP Scholar, competition placements, all-conference or all-state, scholarships, certificates, recognition from a teacher or coach." }
+  ];
+  var SECTIONS = [
+    { id: "education",  title: "Education" },
+    { id: "activities", title: "Leadership and Activities" },
+    { id: "athletics",  title: "Athletics" },
+    { id: "arts",       title: "Arts" },
+    { id: "projects",   title: "Projects" },
+    { id: "work",       title: "Work and Family Responsibilities" },
+    { id: "service",    title: "Community Service" },
+    { id: "summer",     title: "Summer Programs" },
+    { id: "awards",     title: "Honors and Awards" },
+    { id: "skills",     title: "Skills" }
+  ];
+  var GRADES = ["9", "10", "11", "12"];
+
+  function catById(id) { for (var i = 0; i < CATEGORIES.length; i++) if (CATEGORIES[i].id === id) return CATEGORIES[i]; return CATEGORIES[0]; }
+  function sectionOf(a) { return catById(a.category).section; }
+
+  function blankState() {
+    return { version: 1, contact: {}, skills: {}, plan: { goals: [{}, {}, {}] }, activities: [], hidden: {} };
+  }
+  function blankActivity(cat) {
+    return {
+      id: "a" + Date.now().toString(36) + Math.random().toString(36).slice(2, 6),
+      category: cat, role: "", org: "", grades: [], hours: "", weeks: "", level: "",
+      desc: "", bullets: "", include: true
+    };
+  }
+
+  var state = load();
+  var printingBlank = false, savedState = null;
+  var openIds = {};
+
+  /* ---------- Storage ---------- */
+  function load() {
+    try { var raw = localStorage.getItem(STORAGE_KEY); return raw ? normalize(JSON.parse(raw)) : blankState(); }
+    catch (e) { return blankState(); }
+  }
+  function obj(v) { return v && typeof v === "object" && !Array.isArray(v) ? v : {}; }
+  function normalize(s) {
+    var b = blankState();
+    if (!s || typeof s !== "object") return b;
+    b.contact = obj(s.contact); b.skills = obj(s.skills); b.hidden = obj(s.hidden);
+    b.plan = obj(s.plan);
+    var g = Array.isArray(b.plan.goals) ? b.plan.goals : [];
+    b.plan.goals = [0, 1, 2].map(function (i) { return obj(g[i]); });
+    b.activities = Array.isArray(s.activities) ? s.activities.map(function (a) {
+      var x = blankActivity((a && a.category) || "club");
+      for (var k in x) if (a && a[k] !== undefined) x[k] = a[k];
+      if (!Array.isArray(x.grades)) x.grades = [];
+      x.include = x.include !== false;
+      return x;
+    }) : [];
+    return b;
+  }
+  var saveTimer = null;
+  function save() {
+    if (printingBlank) return;
+    clearTimeout(saveTimer);
+    saveTimer = setTimeout(function () {
+      var st = document.getElementById("save-status");
+      try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); st.textContent = "Saved on this device"; st.classList.remove("warn"); }
+      catch (e) { st.textContent = "Couldn't save in this browser. Use Download backup to keep your work."; st.classList.add("warn"); }
+    }, 300);
+  }
+
+  /* ---------- Helpers ---------- */
+  function esc(v) {
+    return String(v == null ? "" : v).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+  }
+  function getPath(o, p) { return p.split(".").reduce(function (x, k) { return x ? x[k] : undefined; }, o); }
+  function setPath(o, p, v) {
+    var ks = p.split("."), last = ks.pop();
+    var t = ks.reduce(function (x, k) { if (!x[k]) x[k] = {}; return x[k]; }, o);
+    t[last] = v;
+  }
+  function findAct(id) { for (var i = 0; i < state.activities.length; i++) if (state.activities[i].id === id) return state.activities[i]; return null; }
+  function actsIn(section) { return state.activities.filter(function (a) { return sectionOf(a) === section; }); }
+  function guideHTML(key) {
+    var g = GUIDES[key]; if (!g) return "";
+    return g.url ? '<a href="' + esc(g.url) + '" target="_blank" rel="noopener">' + esc(g.name) + "</a>" : esc(g.name) + " [link to " + esc(g.name) + "]";
+  }
+  function gradeText(grades) {
+    var g = grades.map(Number).filter(function (n) { return n >= 9 && n <= 12; }).sort(function (a, b) { return a - b; });
+    if (!g.length) return "";
+    if (g.length === 1) return "Grade " + g[0];
+    var consecutive = g.every(function (n, i) { return i === 0 || n === g[i - 1] + 1; });
+    return consecutive ? "Grades " + g[0] + "\u2013" + g[g.length - 1] : "Grades " + g.join(", ");
+  }
+  function timeText(a) {
+    var parts = [];
+    if (a.hours) parts.push(a.hours + " hours per week");
+    if (a.weeks) parts.push(a.weeks + " weeks per year");
+    return parts.join(", ");
+  }
+  function bulletLines(text) {
+    return String(text || "").split(/\n+/).map(function (l) { return l.replace(/^\s*[-\u2022*]\s*/, "").trim(); }).filter(Boolean);
+  }
+
+  /* ---------- Part 1 ---------- */
+  function entryHTML(a) {
+    var isAward = a.category === "award";
+    var id = a.id;
+    var open = openIds[id] ? " open" : "";
+    var h = '<details class="entry" data-id="' + id + '"' + open + '><summary><span class="ename">' + (a.role ? esc(a.role) : (isAward ? "New award" : "New entry")) +
+      '</span><span class="eorg">' + esc(a.org) + '</span><span class="toggle" aria-hidden="true"></span></summary><div class="entry-body">';
+
+    h += '<div class="grid-2">' +
+      '<div class="field"><label for="' + id + '-role">' + (isAward ? "Award or honor" : "My role or position") +
+      '<span class="hint">' + (isAward ? "e.g. Second place, regional science fair" : "e.g. Treasurer, Team captain, Cashier, Member") + "</span></label>" +
+      '<input type="text" id="' + id + '-role" data-a="' + id + '" data-f="role" value="' + esc(a.role) + '"></div>' +
+      '<div class="field"><label for="' + id + '-org">' + (isAward ? "Given by" : "Organization, team, or place") +
+      '<span class="hint">' + (isAward ? "e.g. State Science Olympiad" : "e.g. Key Club, Lincoln High Varsity Soccer, Kroger") + "</span></label>" +
+      '<input type="text" id="' + id + '-org" data-a="' + id + '" data-f="org" value="' + esc(a.org) + '"></div></div>';
+
+    h += '<div class="field"><span class="label">' + (isAward ? "Grade received" : "Grades I did this") + '</span><div class="checks">';
+    GRADES.forEach(function (g) {
+      h += '<label><input type="checkbox" data-a="' + id + '" data-grade="' + g + '"' + (a.grades.indexOf(g) > -1 ? " checked" : "") + "> " + g + "th</label>";
+    });
+    h += "</div></div>";
+
+    if (isAward) {
+      h += '<div class="grid-3"><div class="field"><label for="' + id + '-level">Level</label><select id="' + id + '-level" data-a="' + id + '" data-f="level">';
+      ["", "School", "State or regional", "National", "International"].forEach(function (l) {
+        h += '<option value="' + esc(l) + '"' + (a.level === l ? " selected" : "") + ">" + (l || "Choose one") + "</option>";
+      });
+      h += "</select></div></div>";
+    } else {
+      h += '<div class="grid-3">' +
+        '<div class="field"><label for="' + id + '-hours">Hours per week</label><input type="text" inputmode="numeric" id="' + id + '-hours" data-a="' + id + '" data-f="hours" value="' + esc(a.hours) + '"></div>' +
+        '<div class="field"><label for="' + id + '-weeks">Weeks per year</label><input type="text" inputmode="numeric" id="' + id + '-weeks" data-a="' + id + '" data-f="weeks" value="' + esc(a.weeks) + '"></div></div>';
+    }
+
+    h += '<div class="field"><label for="' + id + '-bullets">What I did and what came of it<span class="hint">One accomplishment per line. Start with a verb and add numbers where you can.</span></label>' +
+      '<textarea id="' + id + '-bullets" data-a="' + id + '" data-f="bullets">' + esc(a.bullets) + "</textarea></div>";
+
+    if (!isAward) {
+      var len = (a.desc || "").length;
+      h += '<div class="field"><label for="' + id + '-desc">Common App description (seniors)<span class="hint">A one-sentence version for your application\u2019s activities list. 150 characters max.</span></label>' +
+        '<input type="text" id="' + id + '-desc" maxlength="150" data-a="' + id + '" data-f="desc" value="' + esc(a.desc) + '">' +
+        '<div class="counter' + (len >= 150 ? " full" : "") + '" data-counter="' + id + '">' + len + " of 150</div></div>";
+    }
+
+    h += '<div class="entry-actions no-print"><label class="inline-check"><input type="checkbox" data-a="' + id + '" data-f="include"' + (a.include ? " checked" : "") + "> Include on my résumé</label>" +
+      '<button type="button" class="btn danger" data-remove="' + id + '">Remove</button></div>';
+    return h + "</div></details>";
+  }
+
+  function renderBrainstorm() {
+    var h = "";
+    CATEGORIES.forEach(function (c) {
+      var list = state.activities.filter(function (a) { return a.category === c.id; });
+      h += '<section class="cat"><h3>' + esc(c.label) + '</h3><p class="prompts">Think about: ' + esc(c.prompts) + "</p>" +
+        list.map(entryHTML).join("") +
+        '<div class="no-print"><button type="button" class="btn small" data-add="' + c.id + '">' + esc(c.add) + "</button></div></section>";
+    });
+    document.getElementById("brainstorm").innerHTML = h;
+  }
+
+  /* ---------- Part 2 ---------- */
+  function hasSkills() { var s = state.skills; return !!(s.languages || s.technical || s.certifications || s.other); }
+
+  function renderOrder() {
+    var h = "";
+    SECTIONS.forEach(function (s) {
+      var list = actsIn(s.id);
+      var isFixed = s.id === "education" || s.id === "skills";
+      if (!isFixed && !list.length) return;
+      var shown = !state.hidden[s.id];
+      h += '<div class="order-section"><div class="row"><label class="inline-check"><input type="checkbox" data-hide="' + s.id + '"' + (shown ? " checked" : "") + '> <span class="stitle">' + esc(s.title) + "</span></label></div>";
+      if (list.length) {
+        h += '<ul class="order-list">';
+        list.forEach(function (a, i) {
+          var nm = (a.role || "Untitled") + (a.org ? ", " + a.org : "");
+          h += '<li class="' + (a.include ? "" : "excluded") + '"><input type="checkbox" data-a="' + a.id + '" data-f="include"' + (a.include ? " checked" : "") +
+            ' aria-label="Include ' + esc(nm) + '" style="width:1.1rem;height:1.1rem;accent-color:var(--purple)"><span class="lbl">' + esc(nm) + "</span>" +
+            '<button type="button" class="arrow" data-move="' + a.id + '" data-dir="-1" aria-label="Move ' + esc(nm) + ' up"' + (i === 0 ? " disabled" : "") + ">\u2191</button>" +
+            '<button type="button" class="arrow" data-move="' + a.id + '" data-dir="1" aria-label="Move ' + esc(nm) + ' down"' + (i === list.length - 1 ? " disabled" : "") + ">\u2193</button></li>";
+        });
+        h += "</ul>";
+      }
+      h += "</div>";
+    });
+    if (!state.activities.length) h += '<p class="empty" style="margin-top:1rem">Add activities in Part 1 and they\u2019ll appear here.</p>';
+    document.getElementById("order").innerHTML = h;
+  }
+
+  function resumeData() {
+    var c = state.contact;
+    var out = { name: c.name || "", contact: [c.email, c.phone, c.city].filter(Boolean), sections: [] };
+    SECTIONS.forEach(function (s) {
+      if (state.hidden[s.id]) return;
+      if (s.id === "education") {
+        if (!c.school && !c.gradYear && !c.gpa && !c.courses) return;
+        out.sections.push({ id: s.id, title: s.title, education: c });
+      } else if (s.id === "skills") {
+        if (!hasSkills()) return;
+        var sk = state.skills, lines = [];
+        if (sk.languages) lines.push(["Languages", sk.languages]);
+        if (sk.technical) lines.push(["Software and tools", sk.technical]);
+        if (sk.certifications) lines.push(["Certifications", sk.certifications]);
+        if (sk.other) lines.push(["Other", sk.other]);
+        out.sections.push({ id: s.id, title: s.title, skills: lines });
+      } else {
+        var items = actsIn(s.id).filter(function (a) { return a.include && (a.role || a.org); });
+        if (items.length) out.sections.push({ id: s.id, title: s.title, items: items });
+      }
+    });
+    return out;
+  }
+
+  function renderPreview() {
+    var d = resumeData();
+    var h = '<p class="rname">' + (d.name ? esc(d.name) : '<span class="placeholder">Your name</span>') + "</p>";
+    h += '<p class="rcontact">' + (d.contact.length ? d.contact.map(esc).join(" &nbsp;|&nbsp; ") : '<span class="placeholder">Email, phone, city and state</span>') + "</p>";
+    if (!d.sections.length) h += '<p class="placeholder">Your résumé will build itself here as you add details above and activities in Part 1.</p>';
+    d.sections.forEach(function (s) {
+      h += "<h4>" + esc(s.title) + "</h4>";
+      if (s.education) {
+        var e = s.education;
+        h += '<div class="ritem"><div class="rhead"><strong>' + (e.school ? esc(e.school) : "High school") + "</strong>" +
+          (e.gradYear ? '<span class="when">Class of ' + esc(e.gradYear) + "</span>" : "") + "</div>";
+        if (e.gpa) h += "<p>GPA: " + esc(e.gpa) + "</p>";
+        if (e.courses) h += "<p>Relevant courses: " + esc(e.courses) + "</p>";
+        h += "</div>";
+      } else if (s.skills) {
+        s.skills.forEach(function (l) { h += "<p><strong>" + esc(l[0]) + ":</strong> " + esc(l[1]) + "</p>"; });
+      } else {
+        s.items.forEach(function (a) {
+          var when = gradeText(a.grades);
+          var title = "<strong>" + esc(a.role || a.org) + "</strong>" + (a.role && a.org ? ", " + esc(a.org) : "");
+          h += '<div class="ritem"><div class="rhead"><span>' + title + "</span>" + (when ? '<span class="when">' + esc(when) + "</span>" : "") + "</div>";
+          var sub = a.category === "award" ? (a.level ? a.level + " level" : "") : timeText(a);
+          if (sub) h += '<div class="rsub">' + esc(sub) + "</div>";
+          var b = bulletLines(a.bullets);
+          if (b.length) h += "<ul>" + b.map(function (x) { return "<li>" + esc(x) + "</li>"; }).join("") + "</ul>";
+          h += "</div>";
+        });
+      }
+    });
+    document.getElementById("resume").innerHTML = h;
+  }
+
+  function resumeText() {
+    var d = resumeData(), L = [];
+    L.push(d.name || "Your Name");
+    if (d.contact.length) L.push(d.contact.join(" | "));
+    d.sections.forEach(function (s) {
+      L.push("", s.title.toUpperCase());
+      if (s.education) {
+        var e = s.education;
+        L.push((e.school || "High school") + (e.gradYear ? ", Class of " + e.gradYear : ""));
+        if (e.gpa) L.push("GPA: " + e.gpa);
+        if (e.courses) L.push("Relevant courses: " + e.courses);
+      } else if (s.skills) {
+        s.skills.forEach(function (l) { L.push(l[0] + ": " + l[1]); });
+      } else {
+        s.items.forEach(function (a, i) {
+          if (i > 0) L.push("");
+          var when = gradeText(a.grades);
+          var sub = a.category === "award" ? (a.level ? a.level + " level" : "") : timeText(a);
+          L.push((a.role || a.org) + (a.role && a.org ? ", " + a.org : "") + (when ? " (" + when + ")" : ""));
+          if (sub) L.push(sub);
+          bulletLines(a.bullets).forEach(function (x) { L.push("- " + x); });
+        });
+      }
+    });
+    return L.join("\n");
+  }
+
+  /* ---------- Part 3 ---------- */
+  function renderTally() {
+    document.getElementById("tally").innerHTML = CATEGORIES.map(function (c) {
+      var n = state.activities.filter(function (a) { return a.category === c.id; }).length;
+      return '<div class="' + (n ? "" : "zero") + '"><span class="n">' + (n || "None yet") + "</span>" + esc(c.label) + "</div>";
+    }).join("");
+  }
+  function renderGuides() {
+    var keys = [];
+    var g = state.plan.grade;
+    if (g === "9th" || g === "10th") keys.push("grade910");
+    if (g === "11th" || g === "12th") keys.push("grade11");
+    (INTEREST_GUIDES[state.plan.interest] || []).forEach(function (k) { keys.push(k); });
+    if (state.activities.some(function (a) { return a.category === "sport"; }) && keys.indexOf("boosterAthlete") < 0) keys.push("boosterAthlete");
+    var box = document.getElementById("guides");
+    if (!keys.length) {
+      box.innerHTML = '<p class="hint">Choose your grade and interest area to see which HelloCollege guides fit you best.</p>';
+      return;
+    }
+    box.innerHTML = '<div class="guides"><p>These HelloCollege guides have ideas for activities, programs, and competitions that fit you:</p><ul>' +
+      keys.map(function (k) { return "<li>" + guideHTML(k) + "</li>"; }).join("") + "</ul></div>";
+  }
+  function renderGoals() {
+    var h = "";
+    [0, 1, 2].forEach(function (i) {
+      h += '<div class="goal"><h4>Goal ' + (i + 1) + '</h4><div class="grid-3">' +
+        '<div class="field"><label for="g' + i + '-goal">What I want to do</label><input type="text" id="g' + i + '-goal" data-bind="plan.goals.' + i + '.goal" placeholder="e.g. Run for a club officer role"></div>' +
+        '<div class="field"><label for="g' + i + '-step">My first step</label><input type="text" id="g' + i + '-step" data-bind="plan.goals.' + i + '.step" placeholder="e.g. Ask the advisor when elections are"></div>' +
+        '<div class="field"><label for="g' + i + '-when">By when</label><input type="text" id="g' + i + '-when" data-bind="plan.goals.' + i + '.when" placeholder="e.g. End of October"></div>' +
+        "</div></div>";
+    });
+    document.getElementById("goals").innerHTML = h;
+  }
+  function renderStartGuides() {
+    document.querySelectorAll("[data-guide]").forEach(function (el) { el.innerHTML = "See: " + guideHTML(el.getAttribute("data-guide")); });
+  }
+
+  function fillBound() {
+    document.querySelectorAll("[data-bind]").forEach(function (el) {
+      var v = getPath(state, el.getAttribute("data-bind"));
+      el.value = v == null ? "" : v;
+    });
+  }
+  function renderAll() {
+    renderGoals();
+    renderBrainstorm();
+    fillBound();
+    renderOrder(); renderPreview();
+    renderTally(); renderGuides();
+  }
+
+  /* ---------- Events ---------- */
+  function onChange(e) {
+    var el = e.target;
+    if (el.hasAttribute("data-bind")) {
+      setPath(state, el.getAttribute("data-bind"), el.value);
+      if (el.id === "pl-grade" || el.id === "pl-interest") renderGuides();
+    } else if (el.hasAttribute("data-hide")) {
+      if (el.checked) delete state.hidden[el.getAttribute("data-hide")]; else state.hidden[el.getAttribute("data-hide")] = true;
+    } else if (el.hasAttribute("data-a")) {
+      var a = findAct(el.getAttribute("data-a")); if (!a) return;
+      if (el.hasAttribute("data-grade")) {
+        var g = el.getAttribute("data-grade");
+        a.grades = a.grades.filter(function (x) { return x !== g; });
+        if (el.checked) a.grades.push(g);
+      } else {
+        var f = el.getAttribute("data-f");
+        if (f === "include") {
+          if (e.type !== "change") return;
+          a.include = el.checked;
+          syncInclude(a);
+          renderOrder();
+        } else {
+          a[f] = el.value;
+          if (f === "role" || f === "org") updateSummary(a);
+          if (f === "desc") updateCounter(a);
+        }
+      }
+    } else return;
+    renderPreview();
+    save();
+  }
+  function syncInclude(a) {
+    document.querySelectorAll('input[data-a="' + a.id + '"][data-f="include"]').forEach(function (x) { x.checked = a.include; });
+  }
+  function updateSummary(a) {
+    var d = document.querySelector('.entry[data-id="' + a.id + '"]'); if (!d) return;
+    d.querySelector(".ename").textContent = a.role || (a.category === "award" ? "New award" : "New entry");
+    d.querySelector(".eorg").textContent = a.org;
+  }
+  function updateCounter(a) {
+    var c = document.querySelector('[data-counter="' + a.id + '"]'); if (!c) return;
+    var n = (a.desc || "").length;
+    c.textContent = n + " of 150";
+    c.classList.toggle("full", n >= 150);
+  }
+  document.addEventListener("input", onChange);
+  document.addEventListener("change", onChange);
+  document.addEventListener("toggle", function (e) {
+    if (e.target.classList && e.target.classList.contains("entry")) {
+      var id = e.target.getAttribute("data-id");
+      if (e.target.open) openIds[id] = true; else delete openIds[id];
+    }
+  }, true);
+
+  document.addEventListener("click", function (e) {
+    var add = e.target.closest("[data-add]");
+    if (add) {
+      var a = blankActivity(add.getAttribute("data-add"));
+      state.activities.push(a);
+      openIds[a.id] = true;
+      renderBrainstorm(); renderOrder(); renderPreview(); renderTally(); renderGuides(); save();
+      var inp = document.getElementById(a.id + "-role");
+      if (inp) { inp.scrollIntoView({ block: "center" }); inp.focus({ preventScroll: true }); }
+      return;
+    }
+    var rm = e.target.closest("[data-remove]");
+    if (rm) {
+      var act = findAct(rm.getAttribute("data-remove"));
+      if (act && confirm("Remove " + (act.role || "this entry") + " and everything you wrote about it?")) {
+        state.activities = state.activities.filter(function (x) { return x !== act; });
+        renderBrainstorm(); renderOrder(); renderPreview(); renderTally(); renderGuides(); save();
+      }
+      return;
+    }
+    var mv = e.target.closest("[data-move]");
+    if (mv) {
+      var id = mv.getAttribute("data-move"), dir = Number(mv.getAttribute("data-dir"));
+      var item = findAct(id), sec = sectionOf(item);
+      var idx = state.activities.indexOf(item), j = idx + dir;
+      while (j >= 0 && j < state.activities.length && sectionOf(state.activities[j]) !== sec) j += dir;
+      if (j >= 0 && j < state.activities.length) {
+        var tmp = state.activities[j]; state.activities[j] = item; state.activities[idx] = tmp;
+        renderOrder(); renderPreview(); save();
+        var again = document.querySelector('[data-move="' + id + '"][data-dir="' + dir + '"]');
+        if (again && !again.disabled) again.focus();
+        else { var other = document.querySelector('[data-move="' + id + '"][data-dir="' + (-dir) + '"]'); if (other) other.focus(); }
+      }
+    }
+  });
+
+  /* Tabs */
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('[role="tab"]'));
+  function selectTab(tab, focus) {
+    tabs.forEach(function (t) {
+      var on = t === tab;
+      t.setAttribute("aria-selected", on ? "true" : "false");
+      t.tabIndex = on ? 0 : -1;
+      document.getElementById(t.getAttribute("aria-controls")).hidden = !on;
+    });
+    if (tab.id === "tab-brainstorm") renderBrainstorm();
+    if (tab.id === "tab-draft") { renderOrder(); renderPreview(); }
+    if (tab.id === "tab-plan") { renderTally(); renderGuides(); }
+    if (focus) tab.focus();
+  }
+  tabs.forEach(function (t, i) {
+    t.addEventListener("click", function () { selectTab(t); });
+    t.addEventListener("keydown", function (e) {
+      var n = null;
+      if (e.key === "ArrowRight") n = tabs[(i + 1) % tabs.length];
+      if (e.key === "ArrowLeft") n = tabs[(i - 1 + tabs.length) % tabs.length];
+      if (e.key === "Home") n = tabs[0];
+      if (e.key === "End") n = tabs[tabs.length - 1];
+      if (n) { e.preventDefault(); selectTab(n, true); }
+    });
+  });
+
+  /* Print */
+  var prevOpen = null;
+  window.addEventListener("beforeprint", function () {
+    prevOpen = Object.assign({}, openIds);
+    document.querySelectorAll("details.entry").forEach(function (d) { d.open = true; });
+  });
+  window.addEventListener("afterprint", function () {
+    document.body.classList.remove("print-resume", "print-blank");
+    if (prevOpen) { openIds = prevOpen; prevOpen = null; }
+    if (printingBlank) { state = savedState; savedState = null; printingBlank = false; renderAll(); }
+    else renderBrainstorm();
+  });
+  document.getElementById("btn-print").addEventListener("click", function () {
+    renderBrainstorm(); renderPreview(); window.print();
+  });
+  document.getElementById("btn-print-resume").addEventListener("click", function () {
+    document.body.classList.add("print-resume"); renderPreview(); window.print();
+  });
+  document.getElementById("btn-print-blank").addEventListener("click", function () {
+    savedState = state; printingBlank = true;
+    state = blankState();
+    CATEGORIES.forEach(function (c) { state.activities.push(blankActivity(c.id)); });
+    document.body.classList.add("print-blank");
+    renderAll();
+    setTimeout(function () { window.print(); }, 50);
+  });
+
+  /* Copy */
+  document.getElementById("btn-copy").addEventListener("click", function () {
+    var text = resumeText(), st = document.getElementById("copy-status");
+    function done(ok) { st.textContent = ok ? "Copied. Paste it into Google Docs or Word." : "Couldn't copy. Select the résumé and copy it yourself."; }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(function () { done(true); }, function () { done(fallbackCopy(text)); });
+    } else done(fallbackCopy(text));
+  });
+  function fallbackCopy(text) {
+    var ta = document.createElement("textarea");
+    ta.value = text; ta.setAttribute("readonly", ""); ta.style.position = "fixed"; ta.style.opacity = "0";
+    document.body.appendChild(ta); ta.select();
+    var ok = false; try { ok = document.execCommand("copy"); } catch (e) {}
+    ta.remove(); return ok;
+  }
+
+  /* Backup */
+  document.getElementById("btn-export").addEventListener("click", function () {
+    var blob = new Blob([JSON.stringify(state, null, 2)], { type: "application/json" });
+    var a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "resume-workbook-backup-" + new Date().toISOString().slice(0, 10) + ".json";
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(function () { URL.revokeObjectURL(a.href); }, 1000);
+  });
+  var fileInput = document.getElementById("import-file");
+  document.getElementById("btn-import").addEventListener("click", function () { fileInput.click(); });
+  fileInput.addEventListener("change", function () {
+    var f = fileInput.files && fileInput.files[0]; if (!f) return;
+    var r = new FileReader();
+    r.onload = function () {
+      try {
+        var data = JSON.parse(r.result);
+        if (!data || !Array.isArray(data.activities)) throw new Error("bad");
+        if (!confirm("Replace what's in this workbook now with your backup?")) return;
+        state = normalize(data); renderAll(); save();
+      } catch (e) {
+        alert("That file isn't a résumé workbook backup. Choose the .json file you downloaded with Download backup.");
+      }
+      fileInput.value = "";
+    };
+    r.readAsText(f);
+  });
+
+  document.getElementById("btn-clear").addEventListener("click", function () {
+    if (confirm("Erase everything in this workbook? Download a backup first if you might want it later.")) {
+      state = blankState(); openIds = {}; renderAll(); save();
+    }
+  });
+
+  renderStartGuides();
+  renderAll();
+})();
+</script>
+</body>
+</html>
